@@ -1,0 +1,16 @@
+-- usuarios
+INSERT INTO usuarios (nombre, apellido, email, password) VALUES ('Camila','Meyer','camila.meyer@example.com','camipass');
+INSERT INTO usuarios (nombre, apellido, email, password) VALUES ('Juan','Perez','juan.perez@example.com','juanpass');
+INSERT INTO usuarios (nombre, apellido, email, password) VALUES ('Maria','Gomez','maria.gomez@example.com','mariapass');
+INSERT INTO usuarios (nombre, apellido, email, password) VALUES ('Pedro', 'Contreras', 'pedro.contreras@example.com', 'pedropass');
+INSERT INTO usuarios (nombre, apellido, email, password) VALUES ('Sofía', 'Castro', 'sofia.castro@example.com', 'sofiapass');
+
+-- libros
+INSERT INTO libros (titulo, autor, rating, categoria, paginas, resena, fecha_inicio, fecha_fin, estado, isbn, owner_email) VALUES ('El Señor de los Anillos', 'J.R.R. Tolkien', 5, 'Fantasía', 1216, 'Una obra épica e inolvidable.', '2025-01-10', '2025-02-05', 'leido', '9780544003415', 'maria.gomez@example.com');
+INSERT INTO libros (titulo, autor, rating, categoria, paginas, resena, fecha_inicio, fecha_fin, estado, isbn, owner_email) VALUES ('Orgullo y Prejuicio', 'Jane Austen', 5, 'Clásico', 432, 'Romance impecable.', '2025-02-15', NULL, 'leyendo', '9780141439518','camila.meyer@example.com');
+INSERT INTO libros (titulo, autor, rating, categoria, paginas, resena, fecha_inicio, fecha_fin, estado, isbn, owner_email) VALUES ('Harry Potter y la Piedra Filosofal', 'J.K. Rowling', 5, 'Fantasía', 320, 'Un clásico moderno.', '2025-03-10', NULL, 'leyendo', '9780439708180', 'camila.meyer@example.com');
+INSERT INTO libros (titulo, autor, rating, categoria, paginas, resena, fecha_inicio, fecha_fin, estado, isbn, owner_email) VALUES ('Harry Potter y la Piedra Filosofal', 'J.K. Rowling', NULL, 'Fantasía', 320, 'Un clásico moderno.', '2025-10-10', NULL, 'por leer', '9780439708180', 'pedro.contreras@example.com');
+INSERT INTO libros (titulo, autor, rating, categoria, paginas, resena, fecha_inicio, fecha_fin, estado, isbn, owner_email) VALUES ('El Nombre del Viento', 'Patrick Rothfuss', 5, 'Fantasía', 880, 'Uno de los mejores mundos creados.', '2025-03-05', NULL, 'leyendo', '9780756404741', 'pedro.contreras@example.com');
+INSERT INTO libros (titulo, autor, rating, categoria, paginas, resena, fecha_inicio, fecha_fin, estado, isbn, owner_email) VALUES ('El Código Da Vinci', 'Dan Brown', 4, 'Thriller', 454, 'Muy entretenido.', '2025-01-20', '2025-01-28', 'leido', '9780307474278', 'sofia.castro@example.com');
+INSERT INTO libros (titulo, autor, rating, categoria, paginas, resena, fecha_inicio, fecha_fin, estado, isbn, owner_email) VALUES ('El Señor de los Anillos', 'J.R.R. Tolkien', 5, 'Fantasía', 1216, 'Una obra épica e inolvidable.', '2025-01-10', '2025-02-05', 'leido', '9780544003415', 'juan.perez@example.com');
+INSERT INTO libros (titulo, autor, rating, categoria, paginas, resena, fecha_inicio, fecha_fin, estado, isbn, owner_email) VALUES ('It', 'Stephen King', 4, 'Terror', 1138, NULL, NULL, NULL, 'por leer', '9781501142970', 'juan.perez@example.com');

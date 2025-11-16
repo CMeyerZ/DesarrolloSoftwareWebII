@@ -1,0 +1,117 @@
+/* Index */
+.principal {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 0;
+}
+.feature-card {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+.stats-section {
+    background-color: #f8f9fa;
+}
+
+/* Forms - crear / editar */
+body {
+    background-color: #f8f9fa;
+}
+.card-form {
+    max-width: 900px;
+    margin: 36px auto;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(13, 17, 23, 0.06);
+}
+.cover-preview {
+    width: 100%;
+    max-height: 320px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+.required::after {
+    content: " *";
+    color: #d00;
+}
+
+/* Login / Registro imagen de fondo */
+.login-card {
+    max-width: 960px;
+    margin: 0 auto;
+    box-shadow: 0 6px 24px rgba(13,17,23,0.08);
+    border-radius: 12px;
+    max-height: calc(100vh - 120px);
+    overflow: hidden;
+}
+.login-card .p-5 { padding: 20px; }
+.login-left {
+    background: linear-gradient(0deg, rgba(8,55,95,0.9), rgba(8,55,95,0.9)),
+                url('https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&q=80');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 28px;
+}
+.login-left h3 { font-weight: 600; }
+.form-control:focus { box-shadow: none; }
+.input-group-text { background: #fff; border-right: 0; }
+.btn-primary { min-width: 160px; }
+@media (max-width: 767px) {
+    .login-left { display: none; }
+    .login-card { max-width: 420px; margin: 12px auto; max-height: none; }
+    .login-card .p-5 { padding: 12px; }
+    .btn-primary { min-width: 120px; }
+}
+
+/* Registro card */
+.register-card {
+    max-width: 820px;
+    margin: 0 auto;
+    border-radius: 12px;
+    box-shadow: 0 6px 24px rgba(13, 17, 23, 0.06);
+    max-height: calc(100vh - 120px);
+    overflow: hidden;
+}
+.register-card .p-4 { padding: 20px; }
+.register-card .form-control { height: calc(1.6em + .5rem + 2px); }
+.bg-accent {
+    background: linear-gradient(0deg, rgba(8, 55, 95, 0.9), rgba(8, 55, 95, 0.9)),
+        url('https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&q=80');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 28px;
+}
+.form-control:focus { box-shadow: none; }
+@media (max-width: 767px) {
+    .register-card { margin: 12px; max-height: none; }
+    .bg-accent { display: none; }
+    .register-card .p-4 { padding: 12px; }
+}
+
+
+.card.feature-card.text-muted { opacity: 0.75; }
+
+@media (max-width: 576px) {
+    .card-form { margin: 16px; }
+}
+
+/* Footer fijo abajo sin línea separadora */
+.site-footer { 
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1030;
+    border-top: none !important;
+}
+
+/* Evitar que el contenido quede cubierto por el footer */
+body {
+    padding-bottom: 90px; /* espacio para el footer (ajustable) */
+}
