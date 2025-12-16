@@ -1,0 +1,117 @@
+<!-- file-encoding: UTF-8 -->
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - BookTrack</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-book-reader me-2"></i>
+                BookTrack
+            </a>
+        </div>
+    </nav>
+
+    <main class="container flex-fill">
+        <div class="card register-card">
+            <div class="row g-0">
+                <div class="col-md-5 bg-accent p-4 d-flex flex-column justify-content-center">
+                    <div>
+                        <h3 class="mb-3">Únete a BookTrack</h3>
+                        <p class="mb-4">Crea una cuenta para gestionar tu biblioteca personal, seguir tu lectura y
+                            compartir reseñas.</p>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="p-4">
+                        <h4 class="mb-3">Crear cuenta</h4>
+                        <p class="text-muted mb-4">Rellena los datos para crear tu cuenta.</p>
+                        <!-- Alerta de error si el correo ya existe o hay otro problema -->
+                        <div th:if="${error}" class="mb-3">
+                            <div class="alert alert-danger" th:text="${error}">Mensaje de error</div>
+                        </div>
+
+                        <form th:action="@{/registro}" method="post" id="registerForm" novalidate>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="firstName" class="form-label">Nombre</label>
+                                    <input id="firstName" name="firstName" type="text" class="form-control"
+                                        placeholder="María" required th:value="${firstName}">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="lastName" class="form-label">Apellido</label>
+                                    <input id="lastName" name="lastName" type="text" class="form-control"
+                                        placeholder="Pérez" required th:value="${lastName}">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <label for="email" class="form-label">Correo electrónico</label>
+                                    <input id="email" name="email" type="email" class="form-control"
+                                        placeholder="ej. maria@ejemplo.com" required th:value="${email}">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="password" class="form-label">Contraseña</label>
+                                    <input id="password" name="password" type="password" class="form-control"
+                                        placeholder="Mínimo 8 caracteres" required>
+                                    <div class="form-text">Usa una contraseña segura. Incluye mayúsculas, números y
+                                        símbolos.</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="confirmPassword" class="form-label">Confirmar contraseña</label>
+                                    <input id="confirmPassword" name="confirmPassword" type="password"
+                                        class="form-control" placeholder="Repite la contraseña" required>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-2 align-items-center">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-user-plus me-2"></i>Crear cuenta
+                                </button>
+                                <a href="/login" class="btn btn-outline-secondary">Ya tengo cuenta</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div th:replace="fragments/footer :: footer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Validación simple de contraseña en cliente
+        const form = document.getElementById('registerForm');
+        form.addEventListener('submit', (e) => {
+            const pwd = document.getElementById('password').value;
+            const confirm = document.getElementById('confirmPassword').value;
+            if (pwd.length < 8) {
+                e.preventDefault();
+                alert('La contraseña debe tener al menos 8 caracteres.');
+                return false;
+            }
+            if (pwd !== confirm) {
+                e.preventDefault();
+                alert('Las contraseñas no coinciden.');
+                return false;
+            }
+            return true;
+        });
+    </script>
+</body>
+
+</html>

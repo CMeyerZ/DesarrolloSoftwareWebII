@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Mi Colección</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+<div th:replace="fragments/navbar :: navbar"></div>
+<main class="container my-4 flex-fill">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3>Mi Colección</h3>
+        <a class="btn btn-primary" th:href="@{/libros/crear}">Agregar libro</a>
+    </div>
+
+    <div class="accordion" id="accordionBooks">
+        <div th:if="${#lists.isEmpty(libros)}" class="alert alert-info">No hay libros registrados.</div>
+        <div th:each="b,iterStat : ${libros}" class="accordion-item">
+            <h2 class="accordion-header" th:attr="id=${'heading-' + iterStat.index}">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        th:attr="data-bs-target=${'#collapse-' + iterStat.index}" aria-expanded="false"
+                        th:attrappend="aria-controls=${'collapse-' + iterStat.index}">
+                    <div class="d-flex w-100 justify-content-between align-items-center">
+                        <div>
+                            <strong th:text="${b.titulo}">Título</strong>
+                            <div class="small text-muted" th:text="${b.autor}">Autor</div>
+                        </div>
+                        <div class="text-end">
+                            <div class="small text-muted">ISBN: <span th:text="${b.isbn}"></span></div>
+                            <div>
+                                <span th:text="${b.rating != null ? b.rating + ' ★' : '-'}">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </button>
+            </h2>
+            <div th:attr="id=${'collapse-' + iterStat.index}" class="accordion-collapse collapse"
+                 th:attrappend="aria-labelledby=${'heading-' + iterStat.index}" data-bs-parent="#accordionBooks">
+                <div class="accordion-body">
+                    <div class="row g-2">
+                        <div class="col-md-6"><strong>Categoría:</strong> <span th:text="${b.categoria != null and b.categoria != '' ? b.categoria : '-'}">-</span></div>
+                        <div class="col-md-3"><strong>Páginas:</strong> <span th:text="${b.paginas != null ? b.paginas : '-'}">-</span></div>
+                        <div class="col-md-3"><strong>Estado:</strong>
+                            <span th:text="${b.estado == 'por-leer' ? 'Por leer' : (b.estado == 'leyendo' ? 'Leyendo' : (b.estado == 'leido' ? 'Leído' : (b.estado != null and b.estado != '' ? b.estado : 'Por leer')))}">Por leer</span>
+                        </div>
+                        <div class="col-md-6"><strong>Fecha inicio:</strong> <span th:text="${b.fechaInicio != null ? b.fechaInicio : '-'}">-</span></div>
+                        <div class="col-md-6"><strong>Fecha término:</strong> <span th:text="${b.fechaFin != null ? b.fechaFin : '-'}">-</span></div>
+                        <div class="col-12 mt-2"><strong>Reseña:</strong>
+                            <p class="mt-1" th:text="${b.resena != null and b.resena != '' ? b.resena : 'Sin reseña.'}">Sin reseña.</p>
+                        </div>
+                        <div class="col-12 text-end">
+                            <a class="btn btn-sm btn-outline-secondary" th:href="@{/libros/editar(isbn=${b.isbn})}">Editar</a>
+                            <a class="btn btn-sm btn-danger ms-2" th:href="@{/libros/delete(isbn=${b.isbn})}" onclick="return confirm('Eliminar libro?');">Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<div th:replace="fragments/footer :: footer"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

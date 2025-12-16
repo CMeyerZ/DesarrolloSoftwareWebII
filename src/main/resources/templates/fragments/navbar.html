@@ -1,0 +1,47 @@
+<!-- file-encoding: UTF-8 -->
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <div class="container">
+        <a class="navbar-brand" href="/index">
+            <i class="fas fa-book-reader me-2"></i>
+            BookTrack
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <!-- Elementos visibles solo para usuarios autenticados -->
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <a class="nav-link active" th:href="@{/index}">Inicio</a>
+                </li>
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <a class="nav-link" th:href="@{/libros/user}">Mi Colección</a>
+                </li>
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <a class="nav-link" th:href="@{/libros/crear}">Agregar Libro</a>
+                </li>
+                <li class="nav-item dropdown ms-2" sec:authorize="isAuthenticated()">
+                    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-user-circle fa-lg me-2"></i>
+                        <span th:if="${authenticatedUser != null}" th:text="${authenticatedUser.nombre} + ' ' + ${authenticatedUser.apellido}">Usuario</span>
+                        <span th:unless="${authenticatedUser != null}" sec:authentication="name">Usuario</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <li><a class="dropdown-item" th:href="@{/users/read(email=${authenticatedUser != null ? authenticatedUser.email : #authentication.name})}">Perfil</a></li>
+                        <li>
+                            <form th:action="@{/logout}" method="post" class="m-0">
+                                <button class="dropdown-item text-danger" type="submit"><i class="fas fa-sign-out-alt me-2"></i>Cerrar Sesión</button>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Botón de iniciar sesión solo visible para usuarios no autenticados -->
+                <li class="nav-item ms-2" sec:authorize="!isAuthenticated()">
+                    <a class="btn btn-outline-light" th:href="@{/login}">
+                        <i class="fas fa-sign-in-alt me-2"></i>Iniciar Sesión
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
